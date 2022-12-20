@@ -12,7 +12,7 @@ client = MongoClient('localhost', 27017)
 
 db = client.flask_db
 pages = db.pages
-
+reverseIndex = db.reverseindex
 
 from webpage.routes import module_webpages
 app.register_blueprint(module_webpages)

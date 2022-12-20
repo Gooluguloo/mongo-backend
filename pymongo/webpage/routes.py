@@ -33,13 +33,13 @@ def list_webpages():
 @module_webpages.route(r'/webpages/crawl/<sitelink>', methods=['GET'])
 def crawl(sitelink:str):
     sitelink = sitelink.replace("+", "/")
-    try:
-        crawler(sitelink)
-        return {
-            'result': 'Crawling complete.'
-        }
+    # try:
+    crawler(sitelink)
+    return {
+        'result': 'Crawling complete.'
+    }
 
-    except:
-        return {
-            'result': 'Crawling failed.'
-        }
+    # except:
+    #     return {
+    #         'result': 'Crawling failed.'
+    #     }
