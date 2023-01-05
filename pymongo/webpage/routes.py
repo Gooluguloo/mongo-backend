@@ -5,7 +5,7 @@ from bson.json_util import dumps, loads
 import json
 
 # from webpage.crawler import crawler
-from app import  pages
+from app import  pages,wordIndex
 from .crawler import crawler
 
 module_webpages = Blueprint('module_webpages', __name__)
@@ -44,3 +44,18 @@ def crawl(sitelink:str):
     #     return {
     #         'result': 'Crawling failed.'
     #     }
+
+@module_webpages.route(r'/webpages/search/<querystr>', methods=['GET'])
+def search(querystr: str):
+    output:json = []
+    for word in querystr.split("+"):
+        result = wordIndex.find({'index': word })
+        output =  output + json.loads(dumps(result))
+    return output
+
+
+
+
+
+def dump_cursor(cursor):
+    return dumps(list(cursor))
