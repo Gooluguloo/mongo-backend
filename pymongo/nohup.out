@@ -104,3 +104,154 @@ Press CTRL+C to quit
  * Restarting with stat
  * Debugger is active!
  * Debugger PIN: 856-057-700
+ * Serving Flask app 'app.py'
+ * Debug mode: on
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://127.0.0.1:5000
+Press CTRL+C to quit
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 119-275-626
+127.0.0.1 - - [22/Dec/2022 16:07:32] "GET / HTTP/1.1" 404 -
+127.0.0.1 - - [22/Dec/2022 16:07:32] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [22/Dec/2022 16:07:37] "GET /webpages HTTP/1.1" 200 -
+Traceback (most recent call last):
+  File "/home/quisette/.local/bin/flask", line 8, in <module>
+    sys.exit(main())
+  File "/home/quisette/.local/lib/python3.10/site-packages/flask/cli.py", line 1047, in main
+    cli.main()
+  File "/home/quisette/.local/lib/python3.10/site-packages/click/core.py", line 1055, in main
+    rv = self.invoke(ctx)
+  File "/home/quisette/.local/lib/python3.10/site-packages/click/core.py", line 1657, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+  File "/home/quisette/.local/lib/python3.10/site-packages/click/core.py", line 1404, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+  File "/home/quisette/.local/lib/python3.10/site-packages/click/core.py", line 760, in invoke
+    return __callback(*args, **kwargs)
+  File "/home/quisette/.local/lib/python3.10/site-packages/click/decorators.py", line 84, in new_func
+    return ctx.invoke(f, obj, *args, **kwargs)
+  File "/home/quisette/.local/lib/python3.10/site-packages/click/core.py", line 760, in invoke
+    return __callback(*args, **kwargs)
+  File "/home/quisette/.local/lib/python3.10/site-packages/flask/cli.py", line 911, in run_command
+    raise e from None
+  File "/home/quisette/.local/lib/python3.10/site-packages/flask/cli.py", line 897, in run_command
+    app = info.load_app()
+  File "/home/quisette/.local/lib/python3.10/site-packages/flask/cli.py", line 308, in load_app
+    app = locate_app(import_name, name)
+  File "/home/quisette/.local/lib/python3.10/site-packages/flask/cli.py", line 218, in locate_app
+    __import__(module_name)
+  File "/home/quisette/repos/websites/mongotest/pymongo/app.py", line 17, in <module>
+    from webpage.routes import module_webpages
+  File "/home/quisette/repos/websites/mongotest/pymongo/webpage/routes.py", line 9, in <module>
+    from .crawler import crawler
+  File "/home/quisette/repos/websites/mongotest/pymongo/webpage/crawler.py", line 52
+    wordIndex.insert_one({'index': word, 'count': title.split().count(word))})
+                                                                           ^
+SyntaxError: closing parenthesis ')' does not match opening parenthesis '{'
+Traceback (most recent call last):
+  File "/home/quisette/.local/bin/flask", line 8, in <module>
+    sys.exit(main())
+  File "/home/quisette/.local/lib/python3.10/site-packages/flask/cli.py", line 1047, in main
+    cli.main()
+  File "/home/quisette/.local/lib/python3.10/site-packages/click/core.py", line 1055, in main
+    rv = self.invoke(ctx)
+  File "/home/quisette/.local/lib/python3.10/site-packages/click/core.py", line 1657, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+  File "/home/quisette/.local/lib/python3.10/site-packages/click/core.py", line 1404, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+  File "/home/quisette/.local/lib/python3.10/site-packages/click/core.py", line 760, in invoke
+    return __callback(*args, **kwargs)
+  File "/home/quisette/.local/lib/python3.10/site-packages/click/decorators.py", line 84, in new_func
+    return ctx.invoke(f, obj, *args, **kwargs)
+  File "/home/quisette/.local/lib/python3.10/site-packages/click/core.py", line 760, in invoke
+    return __callback(*args, **kwargs)
+  File "/home/quisette/.local/lib/python3.10/site-packages/flask/cli.py", line 911, in run_command
+    raise e from None
+  File "/home/quisette/.local/lib/python3.10/site-packages/flask/cli.py", line 897, in run_command
+    app = info.load_app()
+  File "/home/quisette/.local/lib/python3.10/site-packages/flask/cli.py", line 308, in load_app
+    app = locate_app(import_name, name)
+  File "/home/quisette/.local/lib/python3.10/site-packages/flask/cli.py", line 218, in locate_app
+    __import__(module_name)
+  File "/home/quisette/repos/websites/mongotest/pymongo/app.py", line 17, in <module>
+    from webpage.routes import module_webpages
+  File "/home/quisette/repos/websites/mongotest/pymongo/webpage/routes.py", line 9, in <module>
+    from .crawler import crawler
+  File "/home/quisette/repos/websites/mongotest/pymongo/webpage/crawler.py", line 52
+    wordIndex.insert_one({'index': word, 'count': title.split().count(word))})
+                                                                           ^
+SyntaxError: closing parenthesis ')' does not match opening parenthesis '{'
+Traceback (most recent call last):
+  File "/home/quisette/.local/bin/flask", line 8, in <module>
+    sys.exit(main())
+  File "/home/quisette/.local/lib/python3.10/site-packages/flask/cli.py", line 1047, in main
+    cli.main()
+  File "/home/quisette/.local/lib/python3.10/site-packages/click/core.py", line 1055, in main
+    rv = self.invoke(ctx)
+  File "/home/quisette/.local/lib/python3.10/site-packages/click/core.py", line 1657, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+  File "/home/quisette/.local/lib/python3.10/site-packages/click/core.py", line 1404, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+  File "/home/quisette/.local/lib/python3.10/site-packages/click/core.py", line 760, in invoke
+    return __callback(*args, **kwargs)
+  File "/home/quisette/.local/lib/python3.10/site-packages/click/decorators.py", line 84, in new_func
+    return ctx.invoke(f, obj, *args, **kwargs)
+  File "/home/quisette/.local/lib/python3.10/site-packages/click/core.py", line 760, in invoke
+    return __callback(*args, **kwargs)
+  File "/home/quisette/.local/lib/python3.10/site-packages/flask/cli.py", line 911, in run_command
+    raise e from None
+  File "/home/quisette/.local/lib/python3.10/site-packages/flask/cli.py", line 897, in run_command
+    app = info.load_app()
+  File "/home/quisette/.local/lib/python3.10/site-packages/flask/cli.py", line 308, in load_app
+    app = locate_app(import_name, name)
+  File "/home/quisette/.local/lib/python3.10/site-packages/flask/cli.py", line 218, in locate_app
+    __import__(module_name)
+  File "/home/quisette/repos/websites/mongotest/pymongo/app.py", line 17, in <module>
+    from webpage.routes import module_webpages
+  File "/home/quisette/repos/websites/mongotest/pymongo/webpage/routes.py", line 9, in <module>
+    from .crawler import crawler
+  File "/home/quisette/repos/websites/mongotest/pymongo/webpage/crawler.py", line 52
+    wordIndex.insert_one({'index': word, 'count': title.split().count(word))})
+                                                                           ^
+SyntaxError: closing parenthesis ')' does not match opening parenthesis '{'
+Traceback (most recent call last):
+  File "/home/quisette/.local/bin/flask", line 8, in <module>
+    sys.exit(main())
+  File "/home/quisette/.local/lib/python3.10/site-packages/flask/cli.py", line 1047, in main
+    cli.main()
+  File "/home/quisette/.local/lib/python3.10/site-packages/click/core.py", line 1055, in main
+    rv = self.invoke(ctx)
+  File "/home/quisette/.local/lib/python3.10/site-packages/click/core.py", line 1657, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+  File "/home/quisette/.local/lib/python3.10/site-packages/click/core.py", line 1404, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+  File "/home/quisette/.local/lib/python3.10/site-packages/click/core.py", line 760, in invoke
+    return __callback(*args, **kwargs)
+  File "/home/quisette/.local/lib/python3.10/site-packages/click/decorators.py", line 84, in new_func
+    return ctx.invoke(f, obj, *args, **kwargs)
+  File "/home/quisette/.local/lib/python3.10/site-packages/click/core.py", line 760, in invoke
+    return __callback(*args, **kwargs)
+  File "/home/quisette/.local/lib/python3.10/site-packages/flask/cli.py", line 911, in run_command
+    raise e from None
+  File "/home/quisette/.local/lib/python3.10/site-packages/flask/cli.py", line 897, in run_command
+    app = info.load_app()
+  File "/home/quisette/.local/lib/python3.10/site-packages/flask/cli.py", line 308, in load_app
+    app = locate_app(import_name, name)
+  File "/home/quisette/.local/lib/python3.10/site-packages/flask/cli.py", line 218, in locate_app
+    __import__(module_name)
+  File "/home/quisette/repos/websites/mongotest/pymongo/app.py", line 17, in <module>
+    from webpage.routes import module_webpages
+  File "/home/quisette/repos/websites/mongotest/pymongo/webpage/routes.py", line 9, in <module>
+    from .crawler import crawler
+  File "/home/quisette/repos/websites/mongotest/pymongo/webpage/crawler.py", line 52
+    wordIndex.insert_one({'index': word, 'count': title.split().count(word))})
+                                                                           ^
+SyntaxError: closing parenthesis ')' does not match opening parenthesis '{'
+ * Serving Flask app 'app.py'
+ * Debug mode: on
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://127.0.0.1:5000
+Press CTRL+C to quit
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 426-794-244

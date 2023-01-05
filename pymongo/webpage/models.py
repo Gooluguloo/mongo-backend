@@ -6,6 +6,7 @@ class WebPage():
     title :str
     description :str
     created :datetime
+    keyword : list
 
     def __repr__(self):
         return self.url

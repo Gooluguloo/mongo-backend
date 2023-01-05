@@ -13,7 +13,7 @@ on_exit()
         }
 }
 #trap on_exit EXIT
-nohup flask --app app.py --debug run &
+flask --app app.py --debug run
 
 
 
