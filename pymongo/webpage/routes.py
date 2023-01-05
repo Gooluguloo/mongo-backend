@@ -32,7 +32,8 @@ def list_webpages():
 
 @module_webpages.route(r'/webpages/crawl/<sitelink>', methods=['GET'])
 def crawl(sitelink:str):
-    sitelink = sitelink.replace("+", "/")
+    sitelink = sitelink.replace('%WANG', "/")
+    print(sitelink)
     # try:
     crawler(sitelink)
     return {

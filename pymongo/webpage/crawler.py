@@ -38,13 +38,15 @@ def extract_urls(url, depth=0):
         description = description.get("content")
 
     # keyword = soup.find("meta", name="Keywords").string
-    keyword = soup.head.find("meta", attrs={"name":"Keywords"})
+    # paragraph = soup.find_all("p")
+    # print(paragraph)
+    context = ""
+    for p in soup.find_all("p"):
+        context += p.get_text()
+        context += " "
+    print(context)
 
 
-    if keyword == None:
-        keyword = ""
-    else:
-        keyword = keyword.get("content")
 
 
 
@@ -57,15 +59,16 @@ def extract_urls(url, depth=0):
     webpage = WebPage()
     webpage.url = url
     webpage.title = title
-    webpage.keyword = keyword.split()
+    webpage.keyword = context.split(" ")
     # print(webpage.keyword)
     webpage.description = description
     pages.insert_one({'url': webpage.url, 'title': webpage.title,
                      'description': webpage.description, 'keyword': webpage.keyword ,'createdAt': datetime.datetime.utcnow()})
-    for word in description.split():
+    for word in webpage.keyword:
         thisword = wordIndex.find({'index': word})
         # urlArray = wordIndex.find({'index': )thisword.find({'url'})
         # print(urlArray)
+        # print(dump_cursor(thisword))
         if dump_cursor(thisword) == "[]":
             print("[Add] added " + word + "into wordIndex")
             wordIndex.insert_one(
@@ -74,7 +77,7 @@ def extract_urls(url, depth=0):
             print("[Update] update word" + word)
             wordIndex.update_one(
                 {'index': word},
-                {'url': [url]})
+                {"$set":{'occursAt': [url]}})
 
     if depth > 0:
         return
@@ -93,3 +96,5 @@ def crawler(entry_url):
     return results
 def dump_cursor(cursor):
     return dumps(list(cursor))
+def parse_comma(word):
+    return word.split(",")
