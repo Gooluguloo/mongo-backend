@@ -1,9 +1,11 @@
 from nltk.tokenize import word_tokenize
-from nltk.stem import PorterStemmer
+from nltk.stem import WordNetLemmatizer
 
-ps = PorterStemmer()
+wnl = WordNetLemmatizer()
 
 def process_context(input):
-    context = ps.stem(input)
+    context = wnl.lemmatize(input)
     result = word_tokenize(context)
+    for i in range(len(result)):
+        result[i] = result[i].lower()
     return result

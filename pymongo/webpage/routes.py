@@ -6,7 +6,6 @@ import json
 
 # from webpage.crawler import crawler
 from app import pages, webpages, keywords
-from .crawler import crawler
 from .crawl import crawl_webpage
 from .crud import list_keywords, list_webpages
 from .search import search

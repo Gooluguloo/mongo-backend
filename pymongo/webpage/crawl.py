@@ -9,6 +9,10 @@ from bson.json_util import dumps
 from .models import Webpage, Keyword
 from .textprocess import process_context
 
+
+# TAGS_TO_EXTRACT = ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'li', 'span', 'a', 'code', 'blockquote']
+
+
 def index_keywords(webpage, words):
     # An empty keyword list
     _keywords = []
@@ -71,9 +75,17 @@ def process_webpage(url, html):
     description = _description.get('content') if _description else ""
 
     # Extract main context and tokenize the words
-    context = ""
-    for p in soup.find_all("p"):
-        context += f'{p.get_text()} '
+    context = soup.get_text()
+    # for tag in TAGS_TO_EXTRACT:
+    #     for p in soup.find_all(tag):
+    #         context += f'{ p.get_text() } '
+    #         context += f'{ p.get_text() } '
+
+    # Add description keywords to main context as well
+    _desc_keywords = process_context(description)
+    context += ' '.join(_desc_keywords)
+
+    # Perform lemmatization and tokenization
     _words = process_context(context)
 
     # Calculate the frequency of each word

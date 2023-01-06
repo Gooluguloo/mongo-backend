@@ -28,7 +28,7 @@ def quicksort(keywords, low, high):
 def search(query):
     results = []
 
-    _queries = process_context(query)
+    _queries = process_context(query) + query.split('&')
     _keywords = []
 
     # Get keyword objects from queries
