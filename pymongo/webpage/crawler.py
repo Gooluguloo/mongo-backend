@@ -1,12 +1,12 @@
 from flask import Blueprint, jsonify
-# from app import pages
-from .models import WebPage
 from app import pages, wordIndex
 from urllib.parse import urljoin
 import requests
 from bs4 import BeautifulSoup
 import datetime
 from bson.json_util import dumps
+
+from .models import Webpage
 
 count = 0
 
@@ -56,7 +56,7 @@ def extract_urls(url, depth=0):
     #     print("[Duplicate] " + url)
     #     return
 
-    webpage = WebPage()
+    webpage = Webpage()
     webpage.url = url
     webpage.title = title
     webpage.keyword = context.split(" ")

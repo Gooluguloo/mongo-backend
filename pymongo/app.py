@@ -14,5 +14,8 @@ db = client.flask_db
 pages = db.pages
 wordIndex = db.wordIndex
 
+keywords = db.keywords
+webpages = db.webpages
+
 from webpage.routes import module_webpages
 app.register_blueprint(module_webpages)
