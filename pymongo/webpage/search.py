@@ -61,4 +61,7 @@ def search(query, start=0, count=20):
         results = results[start:start+count]
 
     # Return the result
-    return json.loads(dumps(results))
+    return {
+        'total_count': len(results),
+        'results': json.loads(dumps(results))
+    }
