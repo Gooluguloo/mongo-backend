@@ -149,7 +149,13 @@ def crawl_webpage(url):
 # Crawl the first item in the pending queue
 def crawl_next_pending():
     if len(list(pending_crawls.find())) == 0:
+        from .default_urls import DEFAULT_URLS
+        defaults = DEFAULT_URLS
+        for i in range(len(defaults)):
+            defaults[i] = f'https://{defaults[i]}'
+        enqueue_urls('', defaults)
         return "Pending queue is empty."
+
     item = pending_crawls.find({})[0]
     crawl_webpage(item['url'])
     pending_crawls.delete_one({ '_id': item['_id'] })
