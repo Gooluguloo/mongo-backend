@@ -50,6 +50,7 @@ def search(query, start=0, count=20):
             if not webpage in results:
                 results.append(webpage)
 
+    total_count = len(results)
     start = int(start)
     count = int(count)
 
@@ -62,6 +63,6 @@ def search(query, start=0, count=20):
 
     # Return the result
     return {
-        'total_count': len(results),
+        'total_count': total_count,
         'results': json.loads(dumps(results))
     }
