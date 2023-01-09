@@ -91,16 +91,12 @@ def process_webpage(url, html):
     title = soup.title.text if soup.title else ""
     _description = soup.find('meta', property="og:description")
     description = _description.get('content') if _description else ""
+    _desc_keywords =  process_context(description) if _description else ""
 
     # Extract main context and tokenize the words
     context = soup.get_text()
-    # for tag in TAGS_TO_EXTRACT:
-    #     for p in soup.find_all(tag):
-    #         context += f'{ p.get_text() } '
-    #         context += f'{ p.get_text() } '
 
     # Add description keywords to main context as well
-    _desc_keywords = process_context(description)
     context += ' '.join(_desc_keywords)
 
     # Perform lemmatization and tokenization
