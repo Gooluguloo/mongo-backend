@@ -4,9 +4,11 @@ from nltk.stem import WordNetLemmatizer
 wnl = WordNetLemmatizer()
 
 def process_context(input):
+    if input == None:
+        return ''
     if len(input) <= 0:
         return ''
-            
+
     context = wnl.lemmatize(input)
     result = word_tokenize(context)
     for i in range(len(result)):
