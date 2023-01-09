@@ -25,7 +25,7 @@ def quicksort(keywords, low, high):
         quicksort(keywords, pivot+1, high)
 
 
-def search(query, start:int=0, count:int=20):
+def search(query, start=0, count=20):
     results = []
 
     _queries = process_context(query) + query.split('&')
@@ -50,10 +50,15 @@ def search(query, start:int=0, count:int=20):
             if not webpage in results:
                 results.append(webpage)
 
-    if int(start)+int(count) >= len(results):
+    start = int(start)
+    count = int(count)
+
+    if start >= len(results):
         results = results[0:20]
+    elif start+count >= len(results):
+        results = results[start:]
     else:
-        results = results[int(start):int(start)+int(count)]
+        results = results[start:start+count]
 
     # Return the result
     return json.loads(dumps(results))
