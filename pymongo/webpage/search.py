@@ -25,17 +25,18 @@ def quicksort(keywords, low, high):
         quicksort(keywords, pivot+1, high)
 
 
-def search(query):
+def search(query, start:int=0, count:int=20):
     results = []
 
     _queries = process_context(query) + query.split('&')
     _keywords = []
 
     # Get keyword objects from queries
+    # this performs fuzzy regex text search and grabs the first 25 matching keywords
     for q in _queries:
-        keyword = keywords.find_one( { 'text': q } )
-        if keyword:
-            _keywords.append(keyword)
+        for kw in keywords.find( { 'text': { '$regex': q } })[:25]:
+            if kw and not kw in _keywords:
+                _keywords.append(kw)
     # Sort the found keywords based on their total frequencies (low to high)
     quicksort(_keywords, 0, len(_keywords)-1)
 
@@ -48,6 +49,8 @@ def search(query):
             # If the webpage has not been included, include it
             if not webpage in results:
                 results.append(webpage)
+
+    results = results[int(start):int(start)+int(count)]
 
     # Return the result
     return json.loads(dumps(results))

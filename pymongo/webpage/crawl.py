@@ -1,16 +1,32 @@
 from flask import Blueprint, jsonify
-from app import webpages, keywords
+from app import webpages, keywords, pending_crawls
 from urllib.parse import urljoin
 import requests
 from bs4 import BeautifulSoup
 import datetime
 from bson.json_util import dumps
+from urllib.parse import urljoin
+import validators
 
-from .models import Webpage, Keyword
 from .textprocess import process_context
 
 
-# TAGS_TO_EXTRACT = ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'li', 'span', 'a', 'code', 'blockquote']
+def enqueue_urls(base_url, urls):
+    for _url in urls:
+        url = urljoin(base_url, _url)
+
+        # Skip if url is invalid, or webpage already exists, or url already in queue
+        if not validators.url(url):
+            continue
+        if webpages.count_documents({ 'url': url }) > 0:
+            continue
+        if pending_crawls.count_documents({ 'url': url }) > 0:
+            continue
+            
+        pending_crawls.insert_one({
+            'url': url,
+            'added': datetime.datetime.now()
+        })
 
 
 def index_keywords(webpage, words):
@@ -64,6 +80,8 @@ def index_webpage(url, title, description):
 
 # Process a crawled HTML context
 def process_webpage(url, html):
+    if not validators.url(url):
+        return
     if webpages.find_one( { 'url': url } ):
         return
 
@@ -102,6 +120,11 @@ def process_webpage(url, html):
     # Index the words
     index_keywords(webpage, words)
 
+    urls = []
+    for a in soup.find_all('a', href=True):
+        urls.append(a['href'])
+    enqueue_urls(url, urls)
+
 
 
 # Entry point to crawl an url
@@ -110,6 +133,8 @@ def crawl_webpage(url):
     url = url.replace("%WANG", "/")
     if not url.startswith('http'):
         url = f'https://{url}'
+    if not validators.url(url):
+        return
 
     # Skip if the page has already been crawled
     if webpages.find_one( { 'url': url } ):
@@ -119,3 +144,12 @@ def crawl_webpage(url):
     process_webpage(url, html)
 
     return 'Webpage crawl success.'
+
+
+# Crawl the first item in the pending queue
+def crawl_next_pending():
+    if pending_crawls.find():
+        return
+    item = pending_crawls.find({})[0]
+    crawl_webpage(item['url'])
+    pending_crawls.delete_one({ '_id': item['_id'] })
