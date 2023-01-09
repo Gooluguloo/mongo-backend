@@ -50,7 +50,10 @@ def search(query, start:int=0, count:int=20):
             if not webpage in results:
                 results.append(webpage)
 
-    results = results[int(start):int(start)+int(count)]
+    if int(start)+int(count) >= len(results):
+        results = results[0:20]
+    else:
+        results = results[int(start):int(start)+int(count)]
 
     # Return the result
     return json.loads(dumps(results))
