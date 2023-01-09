@@ -5,7 +5,7 @@ import json
 
 # from webpage.crawler import crawler
 from app import pages, webpages, keywords
-from .crawl import crawl_webpage
+from .crawl import crawl_webpage, crawl_next_pending
 from .crud import list_keywords, list_webpages, list_pending_crawls
 from .search import search
 
@@ -27,6 +27,10 @@ def _search(query:str):
 @module_webpages.route('/crawl/<url>', methods=['GET'])
 def _crawl(url:str):
     return crawl_webpage(url)
+
+@module_webpages.route('/crawl-next', methods=['GET'])
+def _crawl_next_pending():
+    return crawl_next_pending()
 
 @module_webpages.route('/webpages', methods=['GET'])
 def _list_webpages():

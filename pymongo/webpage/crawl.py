@@ -22,7 +22,7 @@ def enqueue_urls(base_url, urls):
             continue
         if pending_crawls.count_documents({ 'url': url }) > 0:
             continue
-            
+
         pending_crawls.insert_one({
             'url': url,
             'added': datetime.datetime.now()
@@ -148,8 +148,9 @@ def crawl_webpage(url):
 
 # Crawl the first item in the pending queue
 def crawl_next_pending():
-    if pending_crawls.find():
-        return
+    if not pending_crawls.find():
+        return "Pending queue is empty."
     item = pending_crawls.find({})[0]
     crawl_webpage(item['url'])
     pending_crawls.delete_one({ '_id': item['_id'] })
+    return "Crawl complete."
