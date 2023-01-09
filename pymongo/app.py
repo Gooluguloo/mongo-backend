@@ -23,9 +23,6 @@ app.register_blueprint(module_webpages)
 
 crontab = Crontab(app)
 
-from webpage.crawl import crawl_next_pending
-crawl_next_pending()
-
 @crontab.job(minute="*", hour="*")
 def crawl_job():
     crawl_next_pending()

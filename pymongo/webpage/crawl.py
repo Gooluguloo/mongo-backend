@@ -148,7 +148,7 @@ def crawl_webpage(url):
 
 # Crawl the first item in the pending queue
 def crawl_next_pending():
-    if not pending_crawls.find():
+    if len(list(pending_crawls.find())) == 0:
         return "Pending queue is empty."
     item = pending_crawls.find({})[0]
     crawl_webpage(item['url'])
