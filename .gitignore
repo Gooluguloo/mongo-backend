@@ -3,9 +3,13 @@ __pycache__/
 */__pycache__/
 *.py[cod]
 *$py.class
+<<<<<<< HEAD
 db/
 pymongo/db/
 */db/
+=======
+pymongo/db/
+>>>>>>> d69702601de23cf2c29b0c417a7d5a225346aa1b
 
 
 # C extensions
