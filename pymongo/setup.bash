@@ -17,3 +17,4 @@ fi
 mkdir ./instance/
 touch ./instance/test.db
 echo "Setup complete. Please run serve.bash to start the backend server."
+python3 ./install_nltk.py
