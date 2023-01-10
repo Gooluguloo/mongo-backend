@@ -130,13 +130,17 @@ def crawl_webpage(url):
     if not url.startswith('http'):
         url = f'https://{url}'
     if not validators.url(url):
-        return
+        return 'FAILED'
 
     # Skip if the page has already been crawled
     if webpages.find_one( { 'url': url } ):
         return 'Webpage has already been crawled. Skipping...'
 
-    html = requests.get(url).text
+    try:
+        html = requests.get(url).text
+    except:
+        return 'FAILED'
+
     process_webpage(url, html)
 
     return 'Webpage crawl success.'
@@ -153,6 +157,11 @@ def crawl_next_pending():
         return "Pending queue is empty."
 
     item = pending_crawls.find({})[0]
-    crawl_webpage(item['url'])
+
+    status = crawl_webpage(item['url'])
+    if status == 'FAILED':
+        pending_crawls.delete_one({ '_id': item['_id'] })
+        return f'Failed to crawl webpage at {item["url"]}'
+
     pending_crawls.delete_one({ '_id': item['_id'] })
     return "Crawl complete."
