@@ -157,11 +157,11 @@ def crawl_next_pending():
         return "Pending queue is empty."
 
     item = pending_crawls.find({})[0]
+    pending_crawls.delete_one({ '_id': item['_id'] })
 
     status = crawl_webpage(item['url'])
     if status == 'FAILED':
-        pending_crawls.delete_one({ '_id': item['_id'] })
+        # pending_crawls.delete_one({ '_id': item['_id'] })
         return f'Failed to crawl webpage at {item["url"]}'
 
-    pending_crawls.delete_one({ '_id': item['_id'] })
     return "Crawl complete."
